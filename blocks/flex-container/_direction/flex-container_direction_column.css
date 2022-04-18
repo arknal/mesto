@@ -1,0 +1,4 @@
+.flex-container_direction_column {
+  flex-direction: column;
+  align-items: baseline;
+}

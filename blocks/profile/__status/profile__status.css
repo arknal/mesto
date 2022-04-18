@@ -1,0 +1,8 @@
+.profile__status {
+  margin: 16px 0 0;
+}
+@media (max-width: 680px) {
+  .profile__status {
+    margin: 14px 0 36px;
+  }
+}
