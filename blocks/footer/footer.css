@@ -1,0 +1,16 @@
+.footer {
+  margin-top: 66px;
+  font-family: 'Inter', sans-serif;
+  width: 100%;
+  box-sizing: border-box;
+}
+@media (max-width: 900px) {
+  .footer {
+    padding: 0 19px 0;
+  }
+}
+@media (max-width: 680px) {
+  .footer {
+    margin-top: 48px;
+  }
+}
