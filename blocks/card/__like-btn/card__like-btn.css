@@ -1,0 +1,21 @@
+.card__like-btn {
+  padding: 0;
+  display: flex;
+  background-color: #FFF;
+  border: none;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.card__like-btn svg {
+  overflow: visible;
+  width: 22px;
+  height: 19px;
+  fill: #FFF;
+  stroke: #000;
+  stroke-width: 2px;
+  transition: fill .4s;
+}
+.card__like-btn:hover svg {
+  fill: #000;
+}
