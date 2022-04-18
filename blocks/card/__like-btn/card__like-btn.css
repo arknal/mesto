@@ -1,7 +1,7 @@
 .card__like-btn {
   padding: 0;
   display: flex;
-  background-color: #FFF;
+  background-color: rgba(0,0,0,0);
   border: none;
   justify-content: center;
   align-items: center;
@@ -14,8 +14,12 @@
   fill: #FFF;
   stroke: #000;
   stroke-width: 2px;
-  transition: fill .4s;
+  transition: opacity .4s;
 }
-.card__like-btn:hover svg {
+.card__like-btn:hover svg{
+  opacity: 0.8;
+}
+.card__like-btn:active svg {
   fill: #000;
+  opacity: 1;
 }

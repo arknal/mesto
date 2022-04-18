@@ -1,0 +1,10 @@
+.edit-form {
+  font-family: 'Inter', sans-serif;
+  position: relative;
+  padding: 34px 36px 37px;
+}
+@media (max-width: 580px) {
+  .edit-form {
+    padding: 25px 22px;
+  }
+}

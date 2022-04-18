@@ -1,0 +1,22 @@
+.edit-form__reset-btn {
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  top: -39px;
+  right: -44px;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: opacity .4s;
+}
+.edit-form__reset-btn:hover {
+  opacity: 0.6;
+}
+@media (max-width: 580px) {
+  .edit-form__reset-btn {
+    right: 0px;
+    top: -50px;
+  }
+}

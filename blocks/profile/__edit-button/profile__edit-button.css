@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #000;
+  background-color: rgba(0,0,0,0);
   align-self: flex-end;
   width: 24px;
   height: 24px;

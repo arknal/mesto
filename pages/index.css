@@ -9,7 +9,7 @@
 @import url(../blocks/profile/__avatar/profile__avatar.css);
 @import url(../blocks/profile/__info/profile__info.css);
 @import url(../blocks/profile/__name/profile__name.css);
-@import url(../blocks/profile/__status/profile__status.css);
+@import url(../blocks/profile/__job/profile__job.css);
 @import url(../blocks/profile/__edit-button/profile__edit-button.css);
 @import url(../blocks/profile/__add-button/profile__add-button.css);
 @import url(../blocks/gallery/gallery.css);
@@ -21,6 +21,14 @@
 @import url(../blocks/card/__btn-image/card__btn-image.css);
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__copyright/footer__copyright.css);
+@import url(../blocks/popup/popup.css);
+@import url(../blocks/popup/_opened/popup_opened.css);
+@import url(../blocks/popup/__container/popup__container.css);
+@import url(../blocks/edit-form/edit-form.css);
+@import url(../blocks/edit-form/__title/edit-form__title.css);
+@import url(../blocks/edit-form/__input/edit-form__input.css);
+@import url(../blocks/edit-form/__submit-btn/edit-form__submit-btn.css);
+@import url(../blocks/edit-form/__reset-btn/edit-form__reset-btn.css);
 
 /* Брейкпоинты  */
 @media (max-width: 900px) {
