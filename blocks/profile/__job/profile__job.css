@@ -1,5 +1,5 @@
 .profile__job {
-  max-width: 550px;
+  max-width: 300px;
   margin: 16px 0 0;
 }
 @media (max-width: 680px) {
