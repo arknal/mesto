@@ -9,17 +9,13 @@ let editButton = document.querySelector('.profile__edit-button'),
     profileJob = document.querySelector('.profile__job');
 
 function showPopup() {
-  popup.classList.add('popup_opened');
   nameInput.value = profileName.textContent;
   jobInput.value = profileJob.textContent;
+  popup.classList.add('popup_opened');
 }
 function hidePopup() {
   popup.classList.remove('popup_opened');
 }
-
-editButton.addEventListener('click', showPopup);
-resetButton.addEventListener('click', hidePopup);
-
 function formSubmitHandler (evt) {
   evt.preventDefault();
   profileName.textContent = nameInput.value;
@@ -27,4 +23,6 @@ function formSubmitHandler (evt) {
   hidePopup()
 }
 
+editButton.addEventListener('click', showPopup);
+resetButton.addEventListener('click', hidePopup);
 formElement.addEventListener('submit', formSubmitHandler); 
