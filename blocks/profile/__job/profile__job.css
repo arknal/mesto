@@ -1,6 +1,8 @@
 .profile__job {
-  max-width: 300px;
+  max-width: 350px;
   margin: 16px 0 0;
+  text-overflow: ellipsis;
+  overflow-x: hidden;
 }
 @media (max-width: 680px) {
   .profile__job {

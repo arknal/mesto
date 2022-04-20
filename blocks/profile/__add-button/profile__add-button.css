@@ -6,6 +6,9 @@
   height: 50px;
   justify-self: flex-end;
   background-color: rgba(0,0,0,0);
+  background-image: url(../../../images/plus.svg);
+  background-repeat: no-repeat;
+  background-position: center center;
   border: 2px solid #FFFFFF;
   box-sizing: border-box;
   border-radius: 2px;

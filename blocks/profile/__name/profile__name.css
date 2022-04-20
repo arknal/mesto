@@ -1,9 +1,11 @@
 .profile__name {
-  max-width: 300px;
+  max-width: 400px;
   text-align: center;
   font-weight: 500;
   font-size: 42px;
   line-height: 48px;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
   margin: 0 18px 0 0;
 }
 @media (max-width: 680px) {

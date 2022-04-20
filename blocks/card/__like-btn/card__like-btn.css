@@ -1,25 +1,21 @@
 .card__like-btn {
   padding: 0;
   display: flex;
-  background-color: rgba(0,0,0,0);
+  background-image: url(../../../images/like_unliked.svg);
+  background-color: rgba(0, 0, 0, 0);
   border: none;
   justify-content: center;
   align-items: center;
   cursor: pointer;
-}
-.card__like-btn svg {
   overflow: visible;
   width: 22px;
   height: 19px;
-  fill: #FFF;
-  stroke: #000;
-  stroke-width: 2px;
   transition: opacity .4s;
 }
-.card__like-btn:hover svg{
-  opacity: 0.8;
+.card__like-btn:hover {
+  opacity: 0.5;
 }
-.card__like-btn:active svg {
-  fill: #000;
+.card__like-btn:active {
   opacity: 1;
+  background-image: url(../../../images/like_liked.svg);
 }

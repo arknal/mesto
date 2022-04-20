@@ -1,5 +1,8 @@
 .edit-form__reset-btn {
+  width: 32px;
+  height: 32px;
   background-color: rgba(0, 0, 0, 0);
+  background-image: url(../../../images/cross.svg);
   border: none;
   cursor: pointer;
   position: absolute;

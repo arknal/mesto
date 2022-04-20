@@ -3,6 +3,9 @@
   justify-content: center;
   align-items: center;
   background-color: rgba(0,0,0,0);
+  background-image: url(../../../images/pen.svg);
+  background-repeat: no-repeat;
+  background-position: center center;
   align-self: center;
   width: 24px;
   height: 24px;
