@@ -9,6 +9,9 @@
   background-color: #000;
   cursor: pointer;
   transition: opacity .4s;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
 }
 .edit-form__submit-btn:hover {
   opacity: 0.8;
@@ -17,5 +20,7 @@
   .edit-form__submit-btn {
     margin-top: 45px;
     height: 46px;
+    font-size: 14px;
+    line-height: 17px;
   }
 }

@@ -3,6 +3,8 @@
   height: 32px;
   background-color: rgba(0, 0, 0, 0);
   background-image: url(../../../images/cross.svg);
+  background-position: center center;
+  background-size: cover;
   border: none;
   cursor: pointer;
   position: absolute;
@@ -19,7 +21,9 @@
 }
 @media (max-width: 580px) {
   .edit-form__reset-btn {
+    width: 20px;
+    height: 20px;
     right: 0px;
-    top: -50px;
+    top: -40px;
   }
 }
