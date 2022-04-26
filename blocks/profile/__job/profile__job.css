@@ -2,7 +2,8 @@
   max-width: 300px;
   margin: 16px 0 0;
   text-overflow: ellipsis;
-  overflow-x: hidden;
+  white-space: nowrap;
+  overflow: hidden;
   font-size: 18px;
   line-height: 22px;
   text-align: center;
