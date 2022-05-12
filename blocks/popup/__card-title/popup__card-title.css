@@ -1,0 +1,8 @@
+.popup__card-title {
+  font-size: 12px;
+  line-height: 15px;
+  font-weight: 400;
+  color: #FFF;
+  margin: 10px 0 0;
+  background-color: rgba(0, 0, 0, 0);
+}

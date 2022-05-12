@@ -1,3 +1,8 @@
 .edit-form {
+  box-sizing: border-box;
+  border-radius: 10px;
+  background-color: #FFF;
   font-family: 'Inter', sans-serif;
+  max-width: 430px;
+  min-height: 330px;
 }

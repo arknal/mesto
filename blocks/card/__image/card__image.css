@@ -1,6 +1,18 @@
 .card__image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
   width: 282px;
   height: 282px;
+  object-position: top;
   object-fit: cover;
   overflow: hidden;
+  cursor: pointer;
+  transition: opacity .4s;
+  background-color: #545454;
+  color: #FFF;
+}
+.card__image:hover {
+  opacity: .9;
 }

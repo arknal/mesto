@@ -1,0 +1,5 @@
+.animation_open {
+  opacity: 1;
+  visibility: visible;
+  transition: .4s;
+}
