@@ -1,13 +1,9 @@
 const editButton = document.querySelector('.profile__edit-button'),
       addButton = document.querySelector('.profile__add-button'),
       popupEditProfile = document.querySelector('#popup-change-profile'),
-      popupEditProfileForm = popupEditProfile.querySelector('.edit-form'),
-      nameInput = popupEditProfile.querySelector('.edit-form__input_name'),
-      jobInput = popupEditProfile.querySelector('.edit-form__input_job'),
+      editProfileForm = document.forms['edit-profile'],
       popupAddCard = document.querySelector('#popup-add-card'),
-      popupAddCardForm = popupAddCard.querySelector('.edit-form'),
-      cardTitle = popupAddCardForm.querySelector('.edit-form__input_name'),
-      cardImgLink = popupAddCardForm.querySelector('.edit-form__input_job'),
+      addCardForm = document.forms['add-card'],
       popupWithCardImg = document.querySelector('#popup-card-image'),
       popupImg = popupWithCardImg.querySelector('.popup__card-img'),
       popupTitle = popupWithCardImg.querySelector('.popup__card-title'),
@@ -15,7 +11,7 @@ const editButton = document.querySelector('.profile__edit-button'),
       cardGallery = document.querySelector('.gallery'),
       profileName = document.querySelector('.profile__name'),
       profileJob = document.querySelector('.profile__job'),
-      closeBtns = document.querySelectorAll('.popup__close-btn'),
+      popupArr = [popupEditProfile, popupAddCard, popupWithCardImg],
       cardArr = [
         {
           name: 'Киото',
@@ -77,23 +73,31 @@ function renderCard (card) {
 }
 function handleProfileFormSubmit (evt) {
   evt.preventDefault();
-  profileName.textContent = nameInput.value;
-  profileJob.textContent = jobInput.value;
+  profileName.textContent = editProfileForm.name.value;
+  profileJob.textContent = editProfileForm.job.value;
   hidePopup(popupEditProfile);
 }
 function handleAddCardFormSubmit (evt) {
   evt.preventDefault();
-  renderCard(createCard(cardTitle.value, cardImgLink.value));
+  renderCard(createCard(addCardForm.title.value, addCardForm.link.value));
   hidePopup(popupAddCard);
-  popupAddCardForm.reset();
+  addCardForm.reset();
 }
 
 addButton.addEventListener('click', () => showPopup(popupAddCard));
-popupAddCardForm.addEventListener('submit', handleAddCardFormSubmit); 
+addCardForm.addEventListener('submit', handleAddCardFormSubmit); 
 editButton.addEventListener('click', () => showPopup(popupEditProfile));
-popupEditProfileForm.addEventListener('submit', handleProfileFormSubmit); 
+editProfileForm.addEventListener('submit', handleProfileFormSubmit); 
 cardArr.forEach(item => renderCard(createCard(item.name, item.link)));
-closeBtns.forEach(btn => {
-  const popup = btn.closest('.popup');
-  btn.addEventListener('click', () => hidePopup(popup));
-});
+
+popupArr.forEach(popup => {
+  popup.addEventListener('click', evt => {
+    if ((evt.target.classList.contains('popup'))||(evt.target.classList.contains('popup__close-btn'))) {
+      hidePopup(popup);
+    }});
+  popup.addEventListener('keydown', evt => {
+    if (evt.key === 'Escape') {
+      hidePopup(popup);
+    }
+  });
+})

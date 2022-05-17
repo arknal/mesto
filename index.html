@@ -32,10 +32,10 @@
   </footer>
    <div class="popup" id="popup-change-profile">
      <div class="popup__container">
-       <form class="edit-form popup__form">
+       <form class="edit-form popup__form" name="edit-profile">
          <h2 class="edit-form__title">Редактировать&nbsp;профиль</h2>
-         <input type="text" class="edit-form__input edit-form__input_name" placeholder="Введите имя" value="Жак-Ив Кусто">
-         <input type="text" class="edit-form__input edit-form__input_job" placeholder="Введите должность" value="Исследователь океана">
+         <input required minlength="2" maxlength="40" type="text" name="name" class="edit-form__input edit-form__input_name" placeholder="Введите имя" value="Жак-Ив Кусто">
+         <input required minlength="2" maxlength="200" type="text" name="job" class="edit-form__input edit-form__input_job" placeholder="Введите должность" value="Исследователь океана">
          <button class="edit-form__submit-btn" type="submit">Сохранить</button>
        </form>
        <button class="popup__close-btn"></button>
@@ -43,10 +43,10 @@
    </div>
    <div class="popup" id="popup-add-card">
     <div class="popup__container">
-      <form class="edit-form popup__form">
+      <form class="edit-form popup__form" name="add-card">
         <h2 class="edit-form__title">Новое&nbsp;место</h2>
-        <input required type="text" class="edit-form__input edit-form__input_name" placeholder="Название">
-        <input required type="text" class="edit-form__input edit-form__input_job" placeholder="Ссылка на картинку">
+        <input required type="text" name="title" class="edit-form__input edit-form__input_name" placeholder="Название">
+        <input required type="text" name="link" class="edit-form__input edit-form__input_job" placeholder="Ссылка на картинку">
         <button class="edit-form__submit-btn" type="submit">Создать</button>
       </form>
       <button class="popup__close-btn"></button>
@@ -70,5 +70,6 @@
     </article>
    </template>
    <script src="./scripts/index.js"></script>
+   <script src="./scripts/validation.js"></script>
 </body>
 </html>
