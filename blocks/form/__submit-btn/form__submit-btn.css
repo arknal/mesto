@@ -1,4 +1,4 @@
-.edit-form__submit-btn {
+.form__submit-btn {
   width: 100%;
   box-sizing: border-box;
   border: none;
@@ -13,11 +13,11 @@
   font-size: 18px;
   line-height: 22px;
 }
-.edit-form__submit-btn:hover {
+.form__submit-btn:hover {
   opacity: 0.8;
 }
 @media (max-width: 580px) {
-  .edit-form__submit-btn {
+  .form__submit-btn {
     margin-top: 45px;
     height: 46px;
     font-size: 14px;
