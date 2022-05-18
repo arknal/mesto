@@ -5,41 +5,41 @@ function checkValidity (element) {
     return element.validity.valid
   }
 }
-function showInputError (formElement, inputElement, errorMessage, props) {
+function showInputError (formElement, inputElement, errorMessage, inputErrorClass, errorClass) {
   const errorElement = formElement.querySelector(`.${inputElement.name}-error`);
 
-  inputElement.classList.add(props.inputErrorClass);
-  errorElement.classList.add(props.errorClass);
+  inputElement.classList.add(inputErrorClass);
+  errorElement.classList.add(errorClass);
   errorElement.textContent = errorMessage;
 }
-function hideInputError (formElement, inputElement, props) {
+function hideInputError (formElement, inputElement, inputErrorClass, errorClass) {
   const errorElement = formElement.querySelector(`.${inputElement.name}-error`);
 
-  inputElement.classList.remove(props.inputErrorClass);
-  errorElement.classList.remove(props.errorClass);
+  inputElement.classList.remove(inputErrorClass);
+  errorElement.classList.remove(errorClass);
   errorElement.textContent = '';
 }
-function toggleButtonState(formElement, inputList, props) {
-  const btnElement = formElement.querySelector(props.submitButtonSelector);
+function toggleButtonState(formElement, inputList, submitButtonSelector, inactiveButtonClass) {
+  const btnElement = formElement.querySelector(submitButtonSelector);
 
   if (checkValidity(inputList)) {
-    btnElement.classList.remove(props.inactiveButtonClass)
+    btnElement.classList.remove(inactiveButtonClass)
   } else {
-    btnElement.classList.add(props.inactiveButtonClass)
+    btnElement.classList.add(inactiveButtonClass)
   }
 }
 function setEventListeners(formElement, props) {
   const inputList = Array.from(formElement.querySelectorAll(props.inputSelector));
   
-  toggleButtonState(formElement, inputList, props);
+  toggleButtonState(formElement, inputList, props.submitButtonSelector, props.inactiveButtonClass);
   inputList.forEach(inputElement => {
     inputElement.addEventListener('input', (evt) => {
       if (checkValidity(inputElement)) {
-        hideInputError(formElement, inputElement, props)
+        hideInputError(formElement, inputElement, props.inputErrorClass, props.errorClass)
       } else {
-        showInputError(formElement, inputElement, inputElement.validationMessage, props)
+        showInputError(formElement, inputElement, inputElement.validationMessage, props.inputErrorClass, props.errorClass)
       }
-      toggleButtonState(formElement, inputList, props);
+      toggleButtonState(formElement, inputList, props.submitButtonSelector, props.inactiveButtonClass);
     })
   })
 }
