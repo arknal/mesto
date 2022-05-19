@@ -50,9 +50,10 @@ function enableValidation(props) {
  
   formArr.forEach(formElement => setEventListeners(formElement, props))
 }
+
 enableValidation({
-  formSelector: '.form', //ok
-  inputSelector: '.form__input', //ok
+  formSelector: '.form',
+  inputSelector: '.form__input',
   submitButtonSelector: '.form__submit-btn',
   inactiveButtonClass: 'form__submit-btn_disabled',
   inputErrorClass: 'form__input_type_error',

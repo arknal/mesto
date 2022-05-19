@@ -35,14 +35,14 @@
        <form class="form popup__form" name="edit-profile" novalidate>
          <h2 class="form__title">Редактировать&nbsp;профиль</h2>
          <label class="form__field">
-          <input required minlength="2" maxlength="40" type="text" name="name" class="form__input" placeholder="Введите имя" value="Жак-Ив Кусто">
-          <span class="form__error name-error"></span>
+          <input required minlength="2" maxlength="40" type="text" name="profile-name" class="form__input" placeholder="Введите имя" value="Жак-Ив Кусто">
+          <span class="form__error profile-name-error"></span>
          </label>
          <label class="form__field">
           <input required minlength="2" maxlength="200" type="text" name="job" class="form__input" placeholder="Введите должность" value="Исследователь океана">
           <span class="form__error job-error"></span>
          </label>
-         <button class="form__submit-btn" type="submit">Сохранить</button>
+         <button class="form__submit-btn" type="submit" name="submit-btn">Сохранить</button>
        </form>
        <button class="popup__close-btn"></button>
      </div>
@@ -59,7 +59,7 @@
           <input required type="url" name="link" class="form__input" placeholder="Ссылка на картинку">
           <span class="form__error link-error"></span>
         </label>
-        <button class="form__submit-btn" type="submit">Создать</button>
+        <button class="form__submit-btn form__submit-btn_disabled" type="submit" name="submit-btn">Создать</button>
       </form>
       <button class="popup__close-btn"></button>
     </div>
