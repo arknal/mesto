@@ -11,6 +11,8 @@ const editButton = document.querySelector('.profile__edit-button'),
       profileJob = document.querySelector('.profile__job'),
       formArr = Array.from(document.forms),
       popupArr = [popupEditProfile, popupAddCard, popupWithCardImg],
+      addCardErrors = [document.querySelector('.title-error'), document.querySelector('.link-error')],
+      editProfileErrors = [document.querySelector('.profile-name-error'), document.querySelector('.job-error')],
       cardArr = [
         {
           name: 'Киото',
@@ -43,9 +45,15 @@ function showPopup (popup, isFormResetNeeded) {
     formArr.forEach(form => {
       if ((popup === form.closest('.popup'))&&(popup.id === 'popup-add-card')) {
         form.reset();
+        form.title.classList.remove('form__input_type_error');
+        form.link.classList.remove('form__input_type_error');
+        addCardErrors.forEach(error => error.classList.remove('form__error_visible'));
       } else if ((popup === form.closest('.popup'))&&(popup.id === 'popup-change-profile')) {
         form['profile-name'].value = profileName.textContent;
         form.job.value = profileJob.textContent;
+        form['profile-name'].classList.remove('form__input_type_error');
+        form.job.classList.remove('form__input_type_error');
+        editProfileErrors.forEach(error => error.classList.remove('form__error_visible'));
       }
     })
   }
@@ -95,6 +103,7 @@ function submitForm (formElement, popup) {
       profileName.textContent = formElement['profile-name'].value;
       profileJob.textContent = formElement.job.value;
       hidePopup(popup);
+      formElement['submit-btn'].classList.add('form__submit-btn_disabled');
       break;
     case 'add-card':
       renderCard(createCard(formElement.title.value, formElement.link.value));
