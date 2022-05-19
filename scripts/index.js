@@ -38,7 +38,17 @@ const editButton = document.querySelector('.profile__edit-button'),
         }
       ];
 
-function showPopup (popup) {
+function showPopup (popup, isFormResetNeeded) {
+  if (isFormResetNeeded) {
+    formArr.forEach(form => {
+      if ((popup === form.closest('.popup'))&&(popup.id === 'popup-add-card')) {
+        form.reset();
+      } else if ((popup === form.closest('.popup'))&&(popup.id === 'popup-change-profile')) {
+        form['profile-name'].value = profileName.textContent;
+        form.job.value = profileJob.textContent;
+      }
+    })
+  }
   popup.classList.add('popup_opened');
   popup.addEventListener('keydown', hideOnEscape);
 }
@@ -104,8 +114,8 @@ function handleEnterPress(formElement) {
   })
 }
 
-editButton.addEventListener('click', () => showPopup(popupEditProfile));
-addButton.addEventListener('click', () => showPopup(popupAddCard));
+editButton.addEventListener('click', () => showPopup(popupEditProfile, true));
+addButton.addEventListener('click', () => showPopup(popupAddCard, true));
 
 formArr.forEach(form => {
   form.addEventListener('submit', handleFormSubmit);
