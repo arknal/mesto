@@ -102,15 +102,14 @@ function submitForm (formElement, popup) {
     case 'edit-profile':
       profileName.textContent = formElement['profile-name'].value;
       profileJob.textContent = formElement.job.value;
-      hidePopup(popup);
-      formElement['submit-btn'].classList.add('form__submit-btn_disabled');
       break;
     case 'add-card':
       renderCard(createCard(formElement.title.value, formElement.link.value));
-      hidePopup(popup);
       formElement.reset();
       break;
   }
+  hidePopup(popup);
+  formElement['submit-btn'].classList.add('form__submit-btn_disabled');
 }
 function handleEnterPress(formElement) {
   const btnElement = formElement['submit-btn'];
@@ -133,7 +132,7 @@ formArr.forEach(form => {
 cardArr.forEach(item => renderCard(createCard(item.name, item.link)));
 
 popupArr.forEach(popup => {
-  popup.addEventListener('click', evt => {
+  popup.addEventListener('mousedown', evt => {
     if ((evt.target.classList.contains('popup'))||(evt.target.classList.contains('popup__close-btn'))) {
       hidePopup(popup);
     }});
