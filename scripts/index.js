@@ -11,8 +11,6 @@ const editButton = document.querySelector('.profile__edit-button'),
       profileJob = document.querySelector('.profile__job'),
       formArr = Array.from(document.forms),
       popupArr = [popupEditProfile, popupAddCard, popupWithCardImg],
-      addCardErrors = [document.querySelector('.title-error'), document.querySelector('.link-error')],
-      editProfileErrors = [document.querySelector('.profile-name-error'), document.querySelector('.job-error')],
       cardArr = [
         {
           name: 'Киото',
@@ -40,23 +38,7 @@ const editButton = document.querySelector('.profile__edit-button'),
         }
       ];
 
-function showPopup (popup, isFormResetNeeded) {
-  if (isFormResetNeeded) {
-    formArr.forEach(form => {
-      if ((popup === form.closest('.popup'))&&(popup.id === 'popup-add-card')) {
-        form.reset();
-        form.title.classList.remove('form__input_type_error');
-        form.link.classList.remove('form__input_type_error');
-        addCardErrors.forEach(error => error.classList.remove('form__error_visible'));
-      } else if ((popup === form.closest('.popup'))&&(popup.id === 'popup-change-profile')) {
-        form['profile-name'].value = profileName.textContent;
-        form.job.value = profileJob.textContent;
-        form['profile-name'].classList.remove('form__input_type_error');
-        form.job.classList.remove('form__input_type_error');
-        editProfileErrors.forEach(error => error.classList.remove('form__error_visible'));
-      }
-    })
-  }
+function showPopup (popup) {
   popup.classList.add('popup_opened');
   popup.addEventListener('keydown', hideOnEscape);
 }
@@ -106,10 +88,10 @@ function submitForm (formElement, popup) {
     case 'add-card':
       renderCard(createCard(formElement.title.value, formElement.link.value));
       formElement.reset();
+      formElement['submit-btn'].classList.add('form__submit-btn_disabled');
       break;
   }
   hidePopup(popup);
-  formElement['submit-btn'].classList.add('form__submit-btn_disabled');
 }
 function handleEnterPress(formElement) {
   const btnElement = formElement['submit-btn'];
@@ -122,8 +104,8 @@ function handleEnterPress(formElement) {
   })
 }
 
-editButton.addEventListener('click', () => showPopup(popupEditProfile, true));
-addButton.addEventListener('click', () => showPopup(popupAddCard, true));
+editButton.addEventListener('click', () => showPopup(popupEditProfile));
+addButton.addEventListener('click', () => showPopup(popupAddCard));
 
 formArr.forEach(form => {
   form.addEventListener('submit', handleFormSubmit);
