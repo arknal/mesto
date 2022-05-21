@@ -1,6 +1,6 @@
 .form__field {
   display: block;
-  min-height: 44px
+  min-height: 44px;
 }
 .form__field:first-of-type {
   margin-bottom: 30px;
