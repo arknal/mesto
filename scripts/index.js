@@ -76,41 +76,47 @@ function createCard (title, imgLink) {
 function renderCard (card) {
   cardGallery.prepend(card);
 }
+function submitEditProfileForm (formElement) {
+  profileName.textContent = formElement['profile-name'].value;
+  profileJob.textContent = formElement.job.value;
+  hidePopup(formElement.closest('.popup'));
+}
+function submitAddCardForm (formElement) {
+  renderCard(createCard(formElement.title.value, formElement.link.value));
+  formElement.reset();
+  formElement['submit-btn'].classList.add('form__submit-btn_disabled');
+  hidePopup(formElement.closest('.popup'));
+}
 function handleFormSubmit (evt) {
   evt.preventDefault();
-  submitForm(this, this.closest('.popup'));
-}
-function submitForm (formElement, popup) {
-  switch (formElement.name) {
-    case 'edit-profile':
-      profileName.textContent = formElement['profile-name'].value;
-      profileJob.textContent = formElement.job.value;
-      break;
+  switch (evt.target.name) {
     case 'add-card':
-      renderCard(createCard(formElement.title.value, formElement.link.value));
-      formElement.reset();
-      formElement['submit-btn'].classList.add('form__submit-btn_disabled');
+      submitAddCardForm(evt.target);
+      break;
+    case 'edit-profile':
+      submitEditProfileForm(evt.target);
       break;
   }
-  hidePopup(popup);
 }
-function handleEnterPress(formElement) {
-  const btnElement = formElement['submit-btn'];
 
-  btnElement.addEventListener('click', evt => {
-    evt.preventDefault();
-    if (!btnElement.classList.contains('form__submit-btn_disabled')) {
-      submitForm(formElement, formElement.closest('.popup'));
-  }
-  })
-}
+// function handleEnterPress(formElement) {
+//   const btnElement = formElement['submit-btn'];
+
+//   btnElement.addEventListener('click', evt => {
+//     evt.preventDefault();
+//     if (!btnElement.classList.contains('form__submit-btn_disabled')) {
+//       submitForm(formElement, formElement.closest('.popup'));
+//   }
+//   })
+// }
 
 editButton.addEventListener('click', () => showPopup(popupEditProfile));
 addButton.addEventListener('click', () => showPopup(popupAddCard));
 
 formArr.forEach(form => {
+  console.log(form);
   form.addEventListener('submit', handleFormSubmit);
-  handleEnterPress(form);
+  // handleEnterPress(form);
 })
 cardArr.forEach(item => renderCard(createCard(item.name, item.link)));
 
