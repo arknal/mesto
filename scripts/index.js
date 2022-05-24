@@ -40,15 +40,16 @@ const editButton = document.querySelector('.profile__edit-button'),
 
 function showPopup (popup) {
   popup.classList.add('popup_opened');
-  popup.addEventListener('keydown', hideOnEscape);
+  document.addEventListener('keydown', hideOnEscape);
 }
 function hidePopup (popup) {
   popup.classList.remove('popup_opened');
-  popup.removeEventListener('keydown', hideOnEscape);
+  document.removeEventListener('keydown', hideOnEscape);
 }
 function hideOnEscape (evt) {
+  const popupActive = document.querySelector(".popup_opened");
   if (evt.key === 'Escape') {
-    hidePopup(this);
+    hidePopup(popupActive);
   }
 } 
 function createCard (title, imgLink) {
