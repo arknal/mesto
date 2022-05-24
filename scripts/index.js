@@ -37,7 +37,10 @@ const editButton = document.querySelector('.profile__edit-button'),
           link: './images/Magdeburg.jpg'
         }
       ];
-
+function refreshInputValues () {
+  document.forms['edit-profile']['profile-name'].value = profileName.textContent;
+  document.forms['edit-profile']['job'].value = profileJob.textContent;
+}
 function showPopup (popup) {
   popup.classList.add('popup_opened');
   document.addEventListener('keydown', hideOnEscape);
@@ -52,21 +55,21 @@ function hideOnEscape (evt) {
     hidePopup(popupActive);
   }
 } 
-function createCard (title, imgLink) {
+function createCard (props) {
     const cardElement = cardTemplate.querySelector('.card').cloneNode(true),
           cardImg = cardElement.querySelector('.card__image'),
           cardTitle = cardElement.querySelector('.card__title'),
           cardLikeBtn = cardElement.querySelector('.card__like-btn'),
           cardTrashBtn = cardElement.querySelector('.card__trash-btn');
 
-    cardImg.src = imgLink;
-    cardImg.alt = title;
-    cardTitle.textContent = title;
+    cardImg.src = props.imgLink;
+    cardImg.alt = props.title;
+    cardTitle.textContent = props.title;
     cardLikeBtn.addEventListener('click', event => event.target.classList.toggle('card__like-btn_liked'));
     cardImg.addEventListener('click', () => {
-      popupImg.src = imgLink;
-      popupImg.alt = title;
-      popupTitle.textContent = title;
+      popupImg.src = props.imgLink;
+      popupImg.alt = props.title;
+      popupTitle.textContent = props.title;
       showPopup(popupWithCardImg);
     });
     cardTrashBtn.addEventListener('click', () => cardElement.remove());
@@ -82,47 +85,45 @@ function submitEditProfileForm (formElement) {
   hidePopup(formElement.closest('.popup'));
 }
 function submitAddCardForm (formElement) {
-  renderCard(createCard(formElement.title.value, formElement.link.value));
+  renderCard(createCard({
+    title: formElement.title.value, 
+    imgLink: formElement.link.value
+  }));
   formElement.reset();
   formElement['submit-btn'].classList.add('form__submit-btn_disabled');
   hidePopup(formElement.closest('.popup'));
 }
 function handleFormSubmit (evt) {
   evt.preventDefault();
-  switch (evt.target.name) {
-    case 'add-card':
-      submitAddCardForm(evt.target);
-      break;
-    case 'edit-profile':
-      submitEditProfileForm(evt.target);
-      break;
+  if (!evt.target['submit-btn'].classList.contains('form__submit-btn_disabled')) {
+    switch (evt.target.name) {
+      case 'add-card':
+        submitAddCardForm(evt.target);
+        break;
+      case 'edit-profile':
+        submitEditProfileForm(evt.target);
+        break;
+    }
   }
 }
-
-// function handleEnterPress(formElement) {
-//   const btnElement = formElement['submit-btn'];
-
-//   btnElement.addEventListener('click', evt => {
-//     evt.preventDefault();
-//     if (!btnElement.classList.contains('form__submit-btn_disabled')) {
-//       submitForm(formElement, formElement.closest('.popup'));
-//   }
-//   })
-// }
 
 editButton.addEventListener('click', () => showPopup(popupEditProfile));
 addButton.addEventListener('click', () => showPopup(popupAddCard));
 
 formArr.forEach(form => {
-  console.log(form);
   form.addEventListener('submit', handleFormSubmit);
-  // handleEnterPress(form);
-})
-cardArr.forEach(item => renderCard(createCard(item.name, item.link)));
+});
+cardArr.forEach(item => renderCard(createCard({
+  title: item.name, 
+  imgLink: item.link})));
 
 popupArr.forEach(popup => {
   popup.addEventListener('mousedown', evt => {
     if ((evt.target.classList.contains('popup'))||(evt.target.classList.contains('popup__close-btn'))) {
       hidePopup(popup);
+      if (popup.id === 'popup-change-profile') {
+        refreshInputValues();
+      }
     }});
-})
+});
+refreshInputValues();
