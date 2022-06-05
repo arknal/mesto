@@ -41,7 +41,7 @@ const editButton = document.querySelector('.profile__edit-button'),
       ];
 function refreshInputValues () {
   editProfileForm['profile-name'].value = profileName.textContent;
-  editProfileForm['edit-profile']['job'].value = profileJob.textContent;
+  editProfileForm['job'].value = profileJob.textContent;
 }
 function showPopup (popup) {
   if (popup.id === 'popup-change-profile') {
