@@ -24,8 +24,10 @@ function toggleButtonState(formElement, inputList, submitButtonSelector, inactiv
 
   if (checkValidity(inputList)) {
     btnElement.classList.remove(inactiveButtonClass)
+    btnElement.removeAttribute('disabled');
   } else {
-    btnElement.classList.add(inactiveButtonClass)
+    btnElement.classList.add(inactiveButtonClass);
+    btnElement.setAttribute('disabled', true);
   }
 }
 function setEventListeners(formElement, props) {

@@ -1,7 +1,10 @@
 const editButton = document.querySelector('.profile__edit-button'),
       addButton = document.querySelector('.profile__add-button'),
       popupEditProfile = document.querySelector('#popup-change-profile'),
+      editProfileForm = popupEditProfile.querySelector('.form'),
       popupAddCard = document.querySelector('#popup-add-card'),
+      addCardForm = popupAddCard.querySelector('.form'),
+      addCardFormSubmitBtn = addCardForm.querySelector('.form__submit-btn'),
       popupWithCardImg = document.querySelector('#popup-card-image'),
       popupImg = popupWithCardImg.querySelector('.popup__card-img'),
       popupTitle = popupWithCardImg.querySelector('.popup__card-title'),
@@ -9,7 +12,6 @@ const editButton = document.querySelector('.profile__edit-button'),
       cardGallery = document.querySelector('.gallery'),
       profileName = document.querySelector('.profile__name'),
       profileJob = document.querySelector('.profile__job'),
-      formArr = Array.from(document.forms),
       popupArr = [popupEditProfile, popupAddCard, popupWithCardImg],
       cardArr = [
         {
@@ -38,10 +40,14 @@ const editButton = document.querySelector('.profile__edit-button'),
         }
       ];
 function refreshInputValues () {
-  document.forms['edit-profile']['profile-name'].value = profileName.textContent;
-  document.forms['edit-profile']['job'].value = profileJob.textContent;
+  editProfileForm['profile-name'].value = profileName.textContent;
+  editProfileForm['edit-profile']['job'].value = profileJob.textContent;
 }
 function showPopup (popup) {
+  if (popup.id === 'popup-change-profile') {
+    refreshInputValues();
+    console.log("refreshInputValues()");
+  }
   popup.classList.add('popup_opened');
   document.addEventListener('keydown', hideOnEscape);
 }
@@ -79,51 +85,38 @@ function createCard (props) {
 function renderCard (card) {
   cardGallery.prepend(card);
 }
-function submitEditProfileForm (formElement) {
-  profileName.textContent = formElement['profile-name'].value;
-  profileJob.textContent = formElement.job.value;
-  hidePopup(formElement.closest('.popup'));
-}
-function submitAddCardForm (formElement) {
-  renderCard(createCard({
-    title: formElement.title.value, 
-    imgLink: formElement.link.value
-  }));
-  formElement.reset();
-  formElement['submit-btn'].classList.add('form__submit-btn_disabled');
-  hidePopup(formElement.closest('.popup'));
-}
-function handleFormSubmit (evt) {
+function submitEditProfileForm (evt) {
   evt.preventDefault();
-  if (!evt.target['submit-btn'].classList.contains('form__submit-btn_disabled')) {
-    switch (evt.target.name) {
-      case 'add-card':
-        submitAddCardForm(evt.target);
-        break;
-      case 'edit-profile':
-        submitEditProfileForm(evt.target);
-        break;
-    }
-  }
+  profileName.textContent = editProfileForm['profile-name'].value;
+  profileJob.textContent = editProfileForm.job.value;
+  hidePopup(popupEditProfile);
+}
+function submitAddCardForm (evt) {
+  evt.preventDefault();
+  renderCard(createCard({
+    title: addCardForm.title.value, 
+    imgLink: addCardForm.link.value
+  }));
+  addCardForm.reset();
+  addCardFormSubmitBtn.classList.add('form__submit-btn_disabled');
+  addCardFormSubmitBtn.setAttribute('disabled', true);
+  hidePopup(popupAddCard);
 }
 
 editButton.addEventListener('click', () => showPopup(popupEditProfile));
 addButton.addEventListener('click', () => showPopup(popupAddCard));
 
-formArr.forEach(form => {
-  form.addEventListener('submit', handleFormSubmit);
-});
+editProfileForm.addEventListener('submit', submitEditProfileForm);
+addCardForm.addEventListener('submit', submitAddCardForm);
+
 cardArr.forEach(item => renderCard(createCard({
   title: item.name, 
-  imgLink: item.link})));
+  imgLink: item.link
+})));
 
 popupArr.forEach(popup => {
   popup.addEventListener('mousedown', evt => {
     if ((evt.target.classList.contains('popup'))||(evt.target.classList.contains('popup__close-btn'))) {
       hidePopup(popup);
-      if (popup.id === 'popup-change-profile') {
-        refreshInputValues();
-      }
     }});
 });
-refreshInputValues();
