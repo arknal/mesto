@@ -23,11 +23,11 @@ function toggleButtonState(formElement, inputList, submitButtonSelector, inactiv
   const btnElement = formElement.querySelector(submitButtonSelector);
 
   if (checkValidity(inputList)) {
-    btnElement.classList.remove(inactiveButtonClass);
+    btnElement.classList.remove(inactiveButtonClass)
     btnElement.removeAttribute('disabled');
   } else {
     btnElement.classList.add(inactiveButtonClass);
-    btnElement.setAttribute('disabled', 'disabled');
+    btnElement.setAttribute('disabled', true);
   }
 }
 function setEventListeners(formElement, props) {

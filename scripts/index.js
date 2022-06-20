@@ -1,7 +1,10 @@
 const editButton = document.querySelector('.profile__edit-button'),
       addButton = document.querySelector('.profile__add-button'),
       popupEditProfile = document.querySelector('#popup-change-profile'),
+      editProfileForm = popupEditProfile.querySelector('.form'),
       popupAddCard = document.querySelector('#popup-add-card'),
+      addCardForm = popupAddCard.querySelector('.form'),
+      addCardFormSubmitBtn = addCardForm.querySelector('.form__submit-btn'),
       popupWithCardImg = document.querySelector('#popup-card-image'),
       popupImg = popupWithCardImg.querySelector('.popup__card-img'),
       popupTitle = popupWithCardImg.querySelector('.popup__card-title'),
@@ -9,8 +12,6 @@ const editButton = document.querySelector('.profile__edit-button'),
       cardGallery = document.querySelector('.gallery'),
       profileName = document.querySelector('.profile__name'),
       profileJob = document.querySelector('.profile__job'),
-      addCardForm = popupAddCard.querySelector('.form'),
-      editProfileForm = popupEditProfile.querySelector('.form'),
       popupArr = [popupEditProfile, popupAddCard, popupWithCardImg],
       cardArr = [
         {
@@ -38,14 +39,8 @@ const editButton = document.querySelector('.profile__edit-button'),
           link: './images/Magdeburg.jpg'
         }
       ];
-function refreshInputValues () {
-  document.forms['edit-profile']['profile-name'].value = profileName.textContent;
-  document.forms['edit-profile']['job'].value = profileJob.textContent;
-}
+
 function showPopup (popup) {
-  if (popup.id === 'popup-change-profile') {
-    refreshInputValues();
-  }
   popup.classList.add('popup_opened');
   document.addEventListener('keydown', hideOnEscape);
 }
@@ -96,12 +91,18 @@ function submitAddCardForm (evt) {
     imgLink: addCardForm.link.value
   }));
   addCardForm.reset();
+  addCardFormSubmitBtn.classList.add('form__submit-btn_disabled');
+  addCardFormSubmitBtn.setAttribute('disabled', true);
   hidePopup(popupAddCard);
 }
+
 editButton.addEventListener('click', () => showPopup(popupEditProfile));
 addButton.addEventListener('click', () => showPopup(popupAddCard));
 addCardForm.addEventListener('submit', submitAddCardForm);
 editProfileForm.addEventListener('submit', submitEditProfileForm);
+
+editProfileForm.addEventListener('submit', submitEditProfileForm);
+addCardForm.addEventListener('submit', submitAddCardForm);
 
 cardArr.forEach(item => renderCard(createCard({
   title: item.name, 
