@@ -24,7 +24,7 @@
       </div>
       <button class="profile__add-button" type="button"></button>
     </section>
-    <section class="gallery" aria-label="Секция с картинками">
+    <section class="gallery" aria-div="Секция с картинками">
     </section>
   </main>
   <footer class="footer">
@@ -34,14 +34,14 @@
      <div class="popup__container">
        <form class="form popup__form" id="edit-profile" novalidate>
          <h2 class="form__title">Редактировать&nbsp;профиль</h2>
-         <label class="form__field">
+         <div class="form__field">
           <input required minlength="2" maxlength="40" type="text" id="nameInput" name="profile-name" class="form__input" placeholder="Введите имя" value="Жак-Ив Кусто">
           <span class="form__error profile-name-error"></span>
-         </label>
-         <label class="form__field">
+         </div>
+         <div class="form__field">
           <input required minlength="2" maxlength="200" type="text" id="jobInput" name="job" class="form__input" placeholder="Введите должность" value="Исследователь океана">
           <span class="form__error job-error"></span>
-         </label>
+         </div>
          <button class="form__submit-btn" type="submit">Сохранить</button>
        </form>
        <button class="popup__close-btn"></button>
@@ -51,14 +51,14 @@
     <div class="popup__container">
       <form class="form popup__form" id="add-card" novalidate>
         <h2 class="form__title">Новое&nbsp;место</h2>
-        <label class="form__field">
+        <div class="form__field">
           <input required type="text" minlength="2" maxlength="30" name="title" id="cardTitleInput" class="form__input" placeholder="Название">
           <span class="form__error title-error"></span>
-        </label>
-        <label class="form__field">
+        </div>
+        <div class="form__field">
           <input required type="url" id="cardImgLinkInput" name="link" class="form__input" placeholder="Ссылка на картинку">
           <span class="form__error link-error"></span>
-        </label>
+        </div>
         <button class="form__submit-btn" type="submit">Создать</button>
       </form>
       <button class="popup__close-btn"></button>
@@ -82,8 +82,5 @@
     </article>
    </template>
    <script type="module" src="./scripts/index.js"></script>
-   <script type="module" src="./scripts/Card.js"></script>
-   <script type="module" src="./scripts/FormValidator.js"></script>
-
 </body>
 </html>

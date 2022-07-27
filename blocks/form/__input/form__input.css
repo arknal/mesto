@@ -1,11 +1,15 @@
 .form__input {
   border: none;
   border-bottom: 1px solid rgb(0,0,0, .2);
-  min-height: 27px;
+  height: 27px;
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
   width: 100%;
   box-sizing: border-box;
   padding: 0 0 12px;
+}
+.form__input:focus {
+  outline: none;
+  border-bottom: 1px solid rgb(0,0,0, 1);
 }
